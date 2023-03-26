@@ -28,12 +28,15 @@ Using google account:
 - alternative: use passport-google - [tutorial](https://medium.com/analytics-vidhya/adding-sign-in-with-google-to-your-website-b82755b79b31)
 
 On successful login, Google will return an object of type [CredentialResponse](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse)
-[VerifyIdTojen](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
-[AuthenticationProcess-video](https://developers.google.com/identity/sign-in/web/backend-auth#send-the-id-token-to-your-server)
+
+- [VerifyIdTojen](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
+
+- [AuthenticationProcess-video](https://developers.google.com/identity/sign-in/web/backend-auth#send-the-id-token-to-your-server)
 
 Verify credential (google Token ID ):
-[CodeBorrowed](https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token)
-[GoogleRef](https://developers.google.com/identity/sign-in/web/backend-auth#verify-the-integrity-of-the-id-token)
+- [CodeBorrowed](https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token)
+
+- [GoogleRef](https://developers.google.com/identity/sign-in/web/backend-auth#verify-the-integrity-of-the-id-token)
 
 
 ### Search Bar and filter
