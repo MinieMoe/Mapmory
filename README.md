@@ -4,6 +4,7 @@ A map board that keeps track of the places you've been to with a collections of 
 To be migrated to React Native...
 
 This is just a practice to make API call to google maps and google photos
+- Google Authentication: main log in authentication - I'm not planning to make my own log in authentication
 - Google Maps: used to add (custom) marks/pins to the map and attach photos there
 - Google Photos: to connect to user google account and store their images there
 
