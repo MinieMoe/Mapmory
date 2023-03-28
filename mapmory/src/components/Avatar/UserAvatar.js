@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
+import { googleLogout } from '@react-oauth/google';
+
 
 const userName = 'fakeUser'
 const UserAvatar = () => {
@@ -13,8 +15,18 @@ const UserAvatar = () => {
     }
 
     const handleLogout = () => {
-        //TD: removing user Id token from localStorage
-        // check for user authentication
+        googleLogout();//do i need this??
+        fetch('http://localhost:4000/api/logout', {
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success'){
+                    console.log(data.message)
+                }else{
+                    console.error(data.message)
+                }
+            })
     }
 
     return (

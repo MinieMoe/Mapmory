@@ -11,13 +11,6 @@ const Welcome = () => {
         animationDelay: '250s', //this may not be working
     }
     const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     fetch('http://localhost:4000/test')
-    //         .then(msg => msg.text())
-    //         .then(data => console.log(data))
-    // }, [])
-
     return (
 
         <Container component='main' maxWidth='xs' sx={{mt : 30, textAlign:'center'}}>
