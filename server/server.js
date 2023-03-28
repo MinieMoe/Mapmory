@@ -1,11 +1,13 @@
 /****Imports****/
 const express = require('express')
+const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const googleAuth = require('./googleAuth/googleAuthentication')
 const { requireLogin } = require('./middlewares/userSessionAuthorization')
 
 const port = 4000
+const url = process.env.DATABASE_URL
 const app = express()
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -16,6 +18,17 @@ const corsOptions = {
 app.use(express.json())
 app.use(cors(corsOptions))
 app.use(cookieParser())
+
+
+//CONNECT THE MONGODB USING THE MONGOOSE
+mongoose.set('strictQuery', false)
+mongoose.connect(url,(err) => {
+    if(err){
+        console.log("err", err)
+    }else{
+        console.log("DB Connection established")
+    }
+})
 
 /****Managing endpoints****/
 
@@ -30,7 +43,7 @@ app.post('/api/login', async (req,res) => {
 
         // Extract user info (name, picture, email, etc.) from id token to be store in MongoDB???
         
-        // Store token in cookies to keep track of user sign-in status - cookie session last 59 minutes or less???
+        // Store userID in cookies to keep track of user sign-in status - cookie session last 59 minutes or less???
         res.cookie('jwt', credential, { maxAge: 3540000, httpOnly:true})
 
         res.status(200).json({
