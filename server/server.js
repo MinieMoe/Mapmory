@@ -22,7 +22,8 @@ app.use(cookieParser())
 // Receiving google id token from front end...
 app.post('/api/login', async (req,res) => {
     const {credential} = req.body
-  
+    console.log(credential)
+    console.log(typeof(credential))
     // Decrypt the id token as base64-encoded JWT and verify the token
     try {
         const decodedToken = await googleAuth.getVerifiedAndDecodedOAuthJWTGoogle(credential)
