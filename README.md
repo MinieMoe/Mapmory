@@ -38,7 +38,7 @@ On successful login, Google will return an object of type [CredentialResponse](h
 Verify credential (google Token ID ):
 - [CodeBorrowed](https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token)
 
-- [GoogleRef](https://developers.google.com/identity/sign-in/web/backend-auth#verify-the-integrity-of-the-id-token)
+- [GoogleRef](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
 
 ## Checked if the user is signed in
 The deprecated version of google web sign in has a method that checks if the user is signed in [tutorial](https://medium.com/@18arjunh/how-to-use-google-apis-with-oauth2-0-in-your-web-app-6ec2e8421751)
@@ -52,6 +52,11 @@ It looks like the token Id expires in a hour since the user sign in, the cookie 
 NOTE: tested to see if cookies sent works in Postman, but received an error because Postman is not a google client, hence there no token generated to be verified
 
 ## Authorization - check if the user is the same user as the one they're logged in before give them access to certain things...?
+IMPORTANT!!!: include ```credentials: 'include'``` in any fetch() request to back end that need to retrieve AND set cookie
+
+Even though the server set the cookie at /api/login and the cookie is set in Set-Cookie response header, the cookie is not saved in the browser. This happened because I didn't include ```credentials: 'include'``` in the fetch() in Welcome.js where the user logs in in order to save the cookie that the server set.
+
+[Source](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included)
 
 
 ## Search Bar and filter
