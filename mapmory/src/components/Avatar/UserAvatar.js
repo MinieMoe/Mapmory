@@ -17,7 +17,7 @@ const UserAvatar = () => {
     const handleLogout = () => {
         googleLogout();//do i need this??
         fetch('http://localhost:4000/api/logout', {
-            credentials: 'include' //IMPORTANT!:must include this to set/receive cookies
+            credentials: 'include' //IMPORTANT!:must include this to set/receive cookie
         })
             .then(res => res.json())
             .then(data => {
