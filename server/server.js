@@ -11,10 +11,14 @@ require('dotenv').config();
 const port = 4000
 const url = process.env.DATABASE_URL
 const app = express()
+
 const corsOptions = {
     origin: 'http://localhost:3000',
     credentials: true
 }
+
+// const allowedOrigins = ['http://localhost:3000'];
+
 /****Schemas****/
 const User = require('./schema/UserSchema')
 
@@ -23,7 +27,14 @@ const User = require('./schema/UserSchema')
 app.use(express.json())
 app.use(cors(corsOptions))
 app.use(cookieParser())
-
+// app.use((req, res, next) => {
+//     const origin = req.headers.origin;
+//     if (allowedOrigins.includes(origin)) {
+//       res.setHeader('Access-Control-Allow-Origin', origin);
+//       res.setHeader('Access-Control-Allow-Credentials', true);
+//     }
+//     next();
+// });
 
 //CONNECT THE MONGODB USING THE MONGOOSE
 mongoose.set('strictQuery', false)
@@ -32,7 +43,6 @@ mongoose.connect(url).then(() => {
 }).catch(err => {
     console.log(err)
 })
-
 
 /****Managing endpoints****/
 

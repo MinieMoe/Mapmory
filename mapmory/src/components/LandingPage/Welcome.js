@@ -24,10 +24,12 @@ const Welcome = () => {
                     component={Stack} display="flex" justifyContent="center" alignItems="center" marginTop={3}
                 >
                     <GoogleLogin
+                        // state_cookie_domain='localhost:3000'
                         onSuccess={(credentialResponse) => {
                             //send the id token to server
                             fetch('http://localhost:4000/api/login', {
                                 method: 'POST',
+                                credentials: 'include',//IMPORTANT!:must include this to set/receive cookie
                                 headers: {
                                   'Content-Type': 'application/json'
                                 },

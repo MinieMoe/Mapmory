@@ -52,6 +52,11 @@ It looks like the token Id expires in a hour since the user sign in, the cookie 
 NOTE: tested to see if cookies sent works in Postman, but received an error because Postman is not a google client, hence there no token generated to be verified
 
 ## Authorization - check if the user is the same user as the one they're logged in before give them access to certain things...?
+IMPORTANT!!!: include ```credentials: 'include'``` in any fetch() request to back end that need to retrieve AND set cookie
+
+Even though the server set the cookie at /api/login and the cookie is set in Set-Cookie response header, the cookie is not saved in the browser. This happened because I didn't include ```credentials: 'include'``` in the fetch() in Welcome.js where the user logs in in order to save the cookie that the server set.
+
+[Source](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included)
 
 
 ## Search Bar and filter

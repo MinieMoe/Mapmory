@@ -8,7 +8,6 @@ const User = require('../schema/UserSchema')
  */
 
 const requireLogin = async (req, res, next) => {
-    console.log('cookies from usersession ', req.cookies)
     if (!req.cookies.userId){
         res.status(401).json({
             status:'error',
@@ -16,7 +15,6 @@ const requireLogin = async (req, res, next) => {
         })
     }
     const userId = req.cookies.userId
-    console.log('from usersession ', userId)
     // User is logged in, call next() to continue processing the request
     User.findById(userId).exec().then(user => {
         if (!user){
