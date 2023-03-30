@@ -38,7 +38,7 @@ On successful login, Google will return an object of type [CredentialResponse](h
 Verify credential (google Token ID ):
 - [CodeBorrowed](https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token)
 
-- [GoogleRef](https://developers.google.com/identity/sign-in/web/backend-auth#verify-the-integrity-of-the-id-token)
+- [GoogleRef](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
 
 ## Checked if the user is signed in
 The deprecated version of google web sign in has a method that checks if the user is signed in [tutorial](https://medium.com/@18arjunh/how-to-use-google-apis-with-oauth2-0-in-your-web-app-6ec2e8421751)
