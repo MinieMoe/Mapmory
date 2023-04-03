@@ -9,7 +9,7 @@ const User = require('../schema/UserSchema')
 
 const requireLogin = async (req, res, next) => {
     if (!req.cookies.userId){
-        res.status(401).json({
+        return res.status(401).json({
             status:'error',
             message: 'Unauthorized'
         })
@@ -18,7 +18,7 @@ const requireLogin = async (req, res, next) => {
     // User is logged in, call next() to continue processing the request
     User.findById(userId).exec().then(user => {
         if (!user){
-            res.status(401).json({
+            return res.status(401).json({
                 status:'error',
                 message:'Unauthorized'
             })
@@ -27,6 +27,7 @@ const requireLogin = async (req, res, next) => {
             next()
         }
     })
+
 }
 
 module.exports = { requireLogin }

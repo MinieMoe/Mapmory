@@ -58,6 +58,10 @@ app.post('/api/login', async (req,res) => {
                     picture: payload.picture,
                     given_name: payload.given_name,
                     family_name: payload.family_name,
+                    /**
+                     * NOTE: these two need to get updated whenever a pre-existing user logs in...
+                     * ...as they are timestamp for when they log in. But is it neccessary when I alredy have cookies to track user session?
+                    */
                     iat: payload.iat,
                     exp: payload.exp,
                 })
@@ -74,8 +78,8 @@ app.post('/api/login', async (req,res) => {
 
         })
         
-        // Store userID in cookies to keep track of user sign-in status - cookie session last 59 minutes or less???
-        res.cookie('userId', userId, { maxAge: 3540000, httpOnly:true})
+        // Store userID in cookies to keep track of user sign-in status - cookie session last 59 (3540000) minutes or less???
+        res.cookie('userId', userId, { maxAge: 3000, httpOnly:true})
 
         res.status(200).json({
             status:'success',
@@ -91,8 +95,9 @@ app.post('/api/login', async (req,res) => {
 
 })
 
+// Clear cookie when logging out
 app.get('/api/logout', requireLogin, (req, res) => {
-    res
+    return res
         .clearCookie('userId')
         .status(200)
         .json({
@@ -101,8 +106,15 @@ app.get('/api/logout', requireLogin, (req, res) => {
         })
 })
 
-
-
+// Verify if the user is still logged in
+app.get('/api/verified', requireLogin, (req,res) => {
+    return res
+        .status(200)
+        .json({
+            status:'success',
+            message: 'Verified!'
+        })
+})
 
 app.listen(port, function () {
     console.log(`Mapmory is listening on port ${port}...`)

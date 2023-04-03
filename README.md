@@ -58,6 +58,10 @@ Even though the server set the cookie at /api/login and the cookie is set in Set
 
 [Source](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included)
 
+IMPORTANT!!!: while using middleware where there are multiple response sent back (ex: requireLogin), remember to include ```return``` in front of response to end the middleware and avoid sending multiple responses for a single request : ror [ ERR_HTTP_HEADERS_SENT ]: Cannot set headers after they are sent to the client.
+[source](https://www.datainfinities.com/43/cant-set-headers-after-they-are-sent-to-the-client)
+[explainMiddleware@11:57]:(https://www.youtube.com/watch?v=lY6icfhap2o&t=805s)
+
 
 ## Search Bar and filter
 - [ ] Search up places to add your picture using google maps api (add custom marker to map??)

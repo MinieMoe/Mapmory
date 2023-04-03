@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import { googleLogout } from '@react-oauth/google';
-
+import { useNavigate } from 'react-router-dom';
 
 const userName = 'fakeUser'
 const UserAvatar = () => {
     const [ anchorEl, setAnchorEl ] = useState(null)
     const open = Boolean(anchorEl)
+
+    const navigate = useNavigate()
+
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget)
     }
@@ -15,7 +18,7 @@ const UserAvatar = () => {
     }
 
     const handleLogout = () => {
-        googleLogout();//do i need this??
+        //googleLogout();//do i need this??
         fetch('http://localhost:4000/api/logout', {
             credentials: 'include' //IMPORTANT!:must include this to set/receive cookie
         })
@@ -23,6 +26,7 @@ const UserAvatar = () => {
             .then(data => {
                 if (data.status === 'success'){
                     console.log(data.message)
+                    navigate('/', {replace:true})
                 }else{
                     console.error(data.message)
                 }
